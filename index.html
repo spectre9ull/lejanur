@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lejanur - The Premium Fragrance</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* === ভেরিয়েবল এবং বেসিক স্টাইল === */
+        :root {
+            --primary-color: #e6a43d; /* গোল্ডেন রঙ */
+            --dark-bg: #121212;
+            --secondary-bg: #1e1e1e;
+            --light-text: #f0f0f0;
+            --secondary-text: #aaaaaa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+        }
+
+        p {
+            color: var(--secondary-text);
+            font-size: 1.1rem;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* === হেডার এবং নেভিগেশন === */
+        .header {
+            background-color: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            max-width: 150px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--light-text);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            transition: all 0.3s ease-in-out;
+            background-color: var(--light-text);
+        }
+
+        /* === হিরো সেকশন === */
+        #hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('7c8a5fbd-e975-4ed7-9ba3-2eaca177be82.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #000;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #c98c25;
+            transform: translateY(-3px);
+        }
+
+        /* === আমাদের সম্পর্কে সেকশন === */
+        #about .container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text { flex: 1; }
+        .about-image { flex: 1; text-align: center; }
+        .about-image img {
+            border-radius: 10px;
+            max-width: 450px;
+        }
+
+        /* === কালেকশন সেকশন === */
+        #collection {
+            background-color: var(--secondary-bg);
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .product-card {
+            background-color: var(--dark-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(230, 164, 61, 0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .product-card h3 {
+            font-size: 1.5rem;
+        }
+        
+        .product-card p {
+            padding: 0 10px;
+        }
+
+        /* === বিশেষত্ব সেকশন === */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+            align-items: center;
+        }
+        
+        .feature-item {
+            background: var(--secondary-bg);
+            padding: 30px;
+            border-radius: 10px;
+        }
+        
+        .feature-item h3 {
+            font-size: 1.5rem;
+        }
+        
+        .pouch-image-container img {
+            border-radius: 10px;
+        }
+
+        /* === যোগাযোগ সেকশন === */
+        #contact {
+            background-color: var(--secondary-bg);
+            text-align: center;
+        }
+        
+        #contact .container p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        /* === ফুটার === */
+        footer {
+            background-color: #000;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* === রেসপন্সিভ ডিজাইন === */
+        @media (max-width: 992px) {
+            h2 { font-size: 2.2rem; }
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+            #about .container { flex-direction: column; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--dark-bg);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+            .hero-content h1 { font-size: 2.8rem; }
+            .hero-content p { font-size: 1.2rem; }
+            
+            .product-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+
+    </style>
+    </head>
+<body>
+
+    <header class="header">
+        <nav class="container navbar">
+            <a href="#"><img src="286cc51c-db5f-4c65-8451-c329ebad48cc.jpg" alt="Lejanur Logo" class="logo"></a>
+            
+            <ul class="nav-menu">
+                <li><a href="#hero">হোম</a></li>
+                <li><a href="#about">আমাদের সম্পর্কে</a></li>
+                <li><a href="#collection">কালেকশন</a></li>
+                <li><a href="#contact">যোগাযোগ</a></li>
+            </ul>
+
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="hero">
+            <div class="hero-content">
+                <h1>লেজানুর: ঐতিহ্য এবং আভিজাত্যের সুগন্ধ</h1>
+                <p>প্রতিটি ফোঁটায় অনুভব করুন প্রিমিয়াম পারফিউম অয়েলের বিশুদ্ধতা, যা আপনাকে দেবে দীর্ঘস্থায়ী সতেজ অনুভূতি।</p>
+                <a href="#collection" class="btn">আমাদের কালেকশন দেখুন</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <div class="about-text">
+                    <h2>আমাদের গল্প</h2>
+                    <p>লেজানুর-এ আমরা কেবল আতর তৈরি করি না, আমরা ঐতিহ্যকে আধুনিকতার সাথে মিশ্রিত করে প্রতিটি বোতলে শিল্প তৈরি করি। আমাদের যাত্রা শুরু হয়েছিল সেরা উপাদানগুলি খুঁজে বের করার এবং এমন একটি সুগন্ধ তৈরি করার আকাঙ্ক্ষা থেকে যা দীর্ঘস্থায়ী এবং মনে রাখার মতো।</p>
+                    <p>প্রতিটি লেজানুর আতর যত্ন সহকারে তৈরি, যা আপনাকে দেবে বিশুদ্ধ এবং অ্যালকোহল-মুক্ত এক রাজকীয় অভিজ্ঞতা। আমাদের লক্ষ্য হলো আপনাকে এমন একটি সুগন্ধ উপহার দেওয়া যা আপনার ব্যক্তিত্বকে ফুটিয়ে তুলবে এবং প্রতিটি মুহূর্তে আপনাকে করে তুলবে অনন্য।</p>
+                </div>
+                <div class="about-image">
+                    <img src="7c60e252-a754-4ec5-8691-c2430385eb4b.jpg" alt="Lejanur Ator Bottles">
+                </div>
+            </div>
+        </section>
+
+        <section id="collection">
+            <div class="container">
+                <h2>আমাদের সিগনেচার কালেকশন</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="8c2c48bc-b4df-4378-9157-4de62c95c29c.jpg" alt="Shahi Darbar">
+                        <h3>শাহী দরবার</h3>
+                        <p>এক রাজকীয় এবং উষ্ণ সুবাস, যা আপনাকে দেবে আত্মবিশ্বাস এবং ক্ষমতার অনুভূতি। গভীর এবং মিষ্টি কাঠের নোটের এই মিশ্রণটি বিশেষ অনুষ্ঠানের জন্য উপযুক্ত।</p>
+                    </div>
+                    <div class="product-card">
+                        <img src="92ddb9a7-7ec5-4f6f-931b-93fc9612d360.jpg" alt="Jannatul Nayeem">
+                        <h3>জান্নাতুল নাঈম</h3>
+                        <p>প্রকৃতির স্নিগ্ধ এবং সতেজ ঘ্রাণের এক দারুণ সমন্বয়। এই আতরের সবুজ এবং সতেজ নোট আপনাকে সারাদিন প্রাণবন্ত এবং ফুরফুরে রাখবে।</p>
+                    </div>
+                    <div class="product-card">
+                        <img src="14df6950-c08c-4bb1-a718-85dbf8adc2d7.jpg" alt="Sada Kasturi">
+                        <h3>সাদা কস্তুরী</h3>
+                        <p>একটি হালকা এবং মিষ্টি ফুলের ঘ্রাণ যা আপনাকে দেবে প্রশান্তি ও কমনীয়তার ছোঁয়া। যারা হালকা কিন্তু আকর্ষণীয় সুগন্ধ পছন্দ করেন, তাদের জন্য এটি সেরা।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="why-us">
+            <div class="container">
+                <h2>লেজানুর-এর বিশেষত্ব</h2>
+                <div class="features-grid">
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <h3>দীর্ঘস্থায়ী সুগন্ধ</h3>
+                            <p>একবার ব্যবহারে আমাদের প্রিমিয়াম আতরের সুবাস থাকবে সারাদিন।</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3>১০০% অ্যালকোহল-মুক্ত</h3>
+                            <p>আমাদের সকল আতর সম্পূর্ণ অ্যালকোহল-মুক্ত, যা ত্বকের জন্য নিরাপদ এবং হালাল।</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3>সেরা মানের উপাদান</h3>
+                            <p>আমরা সারা বিশ্ব থেকে সংগ্রহ করা সেরা মানের প্রাকৃতিক উপাদান ব্যবহার করে থাকি।</p>
+                        </div>
+                    </div>
+                    <div class="pouch-image-container">
+                        <img src="b869eed6-4b72-46aa-b19e-f994339e3938.jpg" alt="Premium Velvet Pouch">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact">
+            <div class="container">
+                <h2>আপনার পছন্দের আতরটি অর্ডার করুন</h2>
+                <p>আপনার পছন্দের লেজানুর আতরটি পেতে আজই আমাদের সাথে যোগাযোগ করুন। ঘরে বসেই উপভোগ করুন প্রিমিয়াম সুগন্ধের অভিজ্ঞতা। আমরা সারা বাংলাদেশে হোম ডেলিভারি দিয়ে থাকি।</p>
+                <a href="#" class="btn">ফেসবুকে অর্ডার করুন</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 লেজানুর। সর্বস্বত্ব সংরক্ষিত।</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+
+        document.querySelectorAll(".nav-menu a").forEach(n => n.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        }));
+    </script>
+    </body>
+</html>
